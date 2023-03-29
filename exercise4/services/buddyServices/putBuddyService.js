@@ -16,9 +16,7 @@ const updateBuddy = async (body) => {
                 let buddyContents = JSON.parse(data);
                 for(buddy of buddyContents) {
                     if(body.employeeId == buddy.employeeId) {
-                        buddy.realName = body.realName;
                         buddy.nickName = body.nickName;
-                        buddy.dob = body.dob;
                         buddy.hobbies = body.hobbies;
                         flag = false;
                     }
