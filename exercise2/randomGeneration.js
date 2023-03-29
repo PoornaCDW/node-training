@@ -10,15 +10,10 @@ const randomColorFileGeneration = () => {
             randomColors.push(colorPalette[randNum]);
     }
     
-    writeFileSync("random_generated_color_palette.json", JSON.stringify(randomColors), "UTF-8", (error) => {
-        if(error)
-            console.log(error);
-        else
-            console.log("File read successfully");
-    });
+    writeFileSync("random_generated_color_palette.json", JSON.stringify(randomColors), "UTF-8");
     
     const randomGeneratedColorPalette = JSON.parse(readFileSync("random_generated_color_palette.json", "utf-8"));
-    
+
     return randomGeneratedColorPalette;
 }
 
