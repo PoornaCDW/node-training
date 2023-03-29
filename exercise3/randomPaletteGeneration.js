@@ -10,16 +10,11 @@ const randomExt = require("random-ext");
 const randomGeneratedColorPalette = () => {
     const colorPalette = JSON.parse(readFileSync("color_ palette.json", "UTF-8"));
     
-    let uniqueRandomNumbers = [];
-    while(uniqueRandomNumbers.length < 5) {
-        let randNum = randomExt.integer(colorPalette.length, 0);
-        if(uniqueRandomNumbers.indexOf(randNum) === -1)
-            uniqueRandomNumbers.push(randNum);
-    }
-
     let randomColors = [];
-    for(const randomColor of uniqueRandomNumbers) {
-        randomColors.push(colorPalette[randomColor]);
+    while(randomColors.length < 5) {
+        let randNum = randomExt.integer(colorPalette.length, 0);
+        if(randomColors.indexOf(randNum) === -1)
+            randomColors.push(colorPalette[randNum]);
     }
 
     writeFileSync("random_generated_color_palette.json", JSON.stringify(randomColors), "UTF-8");
