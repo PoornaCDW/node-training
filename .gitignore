@@ -1,0 +1,5 @@
+.DS_Store
+/exercise4/node_modules
+exercise4/.env
+exercise4/nodemon.json
+exercise4/package-lock.json
