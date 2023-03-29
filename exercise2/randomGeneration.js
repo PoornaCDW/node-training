@@ -1,5 +1,12 @@
-import { readFileSync, writeFileSync } from "fs";
+/* Importing the readFileSync and writeFileSync functions from the fs module. */
+const { readFileSync, writeFileSync } = require("fs");
+// import { readFileSync, writeFileSync } from "fs";
 
+/**
+ * It reads the color palette file, generates 5 random numbers, and writes the corresponding colors to
+ * a new file
+ * @returns An array of 5 random colors from the color_palette.json file.
+ */
 const randomColorFileGeneration = () => {
     const colorPalette = JSON.parse(readFileSync("color_ palette.json", "UTF-8"));
     
@@ -17,4 +24,5 @@ const randomColorFileGeneration = () => {
     return randomGeneratedColorPalette;
 }
 
-export { randomColorFileGeneration };
+/* Exporting the `randomColorFileGeneration` function so that it can be used in other files. */
+module.exports = { randomColorFileGeneration };
