@@ -1,16 +1,19 @@
 const express = require("express");
 const router = express.Router();
 
-const buddyController = require("../controllers/buddyController");
+const putBuddyController = require("../controllers/buddyControllers/putBuddyController");
+const deleteBuddyController = require("../controllers/buddyControllers/deleteBuddyController");
+const getBuddyController = require("../controllers/buddyControllers/getBuddyController");
+const postBuddyController = require("../controllers/buddyControllers/postBuddyController");
 
-router.post("/addBuddy", buddyController.addBuddy);
+router.post("/addBuddy", postBuddyController.addBuddy);
 
-router.put("/updateBuddy", buddyController.updateBuddy);
+router.put("/updateBuddy", putBuddyController.updateBuddy);
 
-router.delete("/deleteBuddy", buddyController.deleteBuddy);
+router.delete("/deleteBuddy", deleteBuddyController.deleteBuddy);
 
-router.get("/listBuddy", buddyController.listBuddy);
+router.get("/listBuddy", getBuddyController.listBuddy);
 
-router.get("/listAllBuddies", buddyController.listAllBuddies);
+router.get("/listAllBuddies", getBuddyController.listAllBuddies);
 
 module.exports = router;

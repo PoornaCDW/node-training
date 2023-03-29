@@ -12,7 +12,7 @@ expressApp.use("/buddy", buddyRoute);
 
 /* This is a route that is used to handle the base route. */
 expressApp.use("/", (request, response) => {
-    response.send("Base file");
+    response.send("Base route!");
 });
 
 /* This is the code that starts the server. */
