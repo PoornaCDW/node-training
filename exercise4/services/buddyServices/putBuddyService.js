@@ -6,11 +6,15 @@ const { readFile, writeFile } = require('fs');
  * @returns A promise is being returned with a message.
  */
 const updateBuddy = async (body) => {
-    let updateMessage;
+    let updatedData;
+    let status;
+    let message;
     let promise = new Promise((resolve, reject) => {
         readFile("./assets/cdw_ace23_buddies.json", (err, data) => {
             if(err) {
-                reject("Error while reading the file.");
+                status = 404;
+                message = "Error while reading the file.";
+                reject(err);
             } else {
                 let flag = true;
                 let buddyContents = JSON.parse(data);
@@ -22,13 +26,19 @@ const updateBuddy = async (body) => {
                     }
                 }
                 if(flag) {
-                    resolve("The employee with the given ID was not found!");
+                    status = 404;
+                    message = `The record with the employee ID - ${body.employeeId} was not found!`;
+                    resolve(body);
                 } else {
                     writeFile("./assets/cdw_ace23_buddies.json", JSON.stringify(buddyContents), (err) => {
                         if(err) {
-                            reject("Error while writing the file.");
+                            status = 404;
+                            message = "Error while writing the file.";
+                            reject("[]");
                         } else {
-                            resolve("Updated successfully!");
+                            status = 300;
+                            message = "Details updated successfully!";
+                            resolve(buddyContents);
                         }
                     });
                 }
@@ -36,11 +46,16 @@ const updateBuddy = async (body) => {
         });
     });
     await promise.then(
-        (message) => {
-            updateMessage = message;
+        (data) => {
+            updatedData = data;
         }
     );
-    return updateMessage;
+
+    return {
+        "status": status,
+        "data": updatedData,
+        "message": message
+    };
 }
 
 /* Exporting the function `updateBuddy` so that it can be used in other files. */

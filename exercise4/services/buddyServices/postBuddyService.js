@@ -6,30 +6,41 @@ const { readFile, writeFile } = require('fs');
  * @returns A promise - message.
  */
 const addBuddy = async (body) => {
-    let responseMessage;
+    let status;
+    let message;
     let promise = new Promise((resolve, reject) => {
         readFile("./assets/cdw_ace23_buddies.json", (err, data) => {
             if(err) {
-                reject("Error while reading the file.");
+                status = 404;
+                message = "Error while reading the file.";
+                reject(err);
             } else {
                 let buddyContents = JSON.parse(data);
                 buddyContents.push(body);
                 writeFile("./assets/cdw_ace23_buddies.json", JSON.stringify(buddyContents), (err) => {
                     if(err) {
-                        reject("Error while writing the file.");
+                        status = 404;
+                        message = "Error while writing the file.";
+                        reject("[]");
                     } else {
-                        resolve("Added successfully!");
+                        status = 300;
+                        resolve("Details added successfully!");
                     }
                 });
             }
         });
     });
     await promise.then(
-        (message) => {
-            responseMessage = message;
+        (mes) => {
+            message = mes;
         }
     );
-    return responseMessage;
+
+    return {
+        "status": status,
+        "data": body,
+        "message": message
+    };
 }
 
 /* Exporting the function `addBuddy` so that it can be used in other files. */

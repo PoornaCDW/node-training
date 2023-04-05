@@ -6,40 +6,51 @@ const { readFile, writeFile } = require('fs');
  * @returns A promise is being returned with a message.
  */
 const deleteBuddy = async (body) => {
-    let deleteMessage;
+    let deleteData;
+    let status;
+    let message;
     let promise = new Promise((resolve, reject) => {
         readFile("./assets/cdw_ace23_buddies.json", (err, data) => {
             if(err) {
-                reject("Error while reading the file.");
+                status = 404;
+                message = "Error while reading the file.";
+                reject(err);
             } else {
                 let index = -1;
                 let buddyContents = JSON.parse(data);
-                for(buddy in buddyContents) {
-                    if(body.employeeId == buddyContents[buddy].employeeId) {
-                        index = buddy;
-                    }
-                }
+                index = buddyContents.findIndex(buddy => buddy.employeeId === body.employeeId);
                 if(index !== -1) {
                     buddyContents.splice(index, 1);
                     writeFile("./assets/cdw_ace23_buddies.json", JSON.stringify(buddyContents), (err) => {
                         if(err) {
-                            reject("Error while writing the file.");
+                            status = 404;
+                            message = "Error while writing the file.";
+                            reject(err);
                         } else {
-                            resolve("Deleted successfully!");
+                            status = 300;
+                            message = "Deleted successfully!";
+                            resolve(buddyContents);
                         }
                     });
                 } else {
-                    resolve("Buddy details with the given ID wasn't found!");
+                    status = 404;
+                    message = `The record with the employee ID - ${body.employeeId} was not found!`;
+                    resolve(body);
                 }
             }
         });
     });
     await promise.then(
-        (message) => {
-            deleteMessage = message;
+        (data) => {
+            deleteData = data;
         }
     );
-    return deleteMessage;
+
+    return {
+        "status": status,
+        "data": deleteData,
+        "message": message
+    };
 }
 
 /* Exporting the function `deleteBuddy` so that it can be used in other files. */
