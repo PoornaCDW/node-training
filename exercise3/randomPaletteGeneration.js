@@ -12,7 +12,7 @@ const randomGeneratedColorPalette = () => {
     
     let randomColors = [];
     while(randomColors.length < 5) {
-        let randNum = randomExt.integer(colorPalette.length, 0);
+        let randNum = randomExt.integer(colorPalette.length-1, 0);
         if(randomColors.indexOf(randNum) === -1)
             randomColors.push(colorPalette[randNum]);
     }
