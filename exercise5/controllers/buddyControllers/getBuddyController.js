@@ -56,7 +56,6 @@ const listAllBuddies = (request, response) => {
                 });
             } else {
                 let buddyContents = JSON.parse(data);
-                console.log(buddyContents);
                 const result = getBuddyService.listAllBuddies(buddyContents);
                 response.send(result);
             }
