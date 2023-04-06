@@ -11,7 +11,7 @@ expressApp.use(express.json());
 /* `expressApp.use(cors({ origin: ["http://localhost:4005", "https://www.google.com"] }));` is enabling
 Cross-Origin Resource Sharing (CORS) for the server. */
 expressApp.use(cors({
-    origin: ["http://localhost:4005", "https://www.google.com"]
+    origin: ["https://www.google.com"]
 }));
 
 const buddyRoute = require("./routes/buddy.routes");
