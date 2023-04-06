@@ -2,8 +2,7 @@
 and importing the http module. */
 const { randomGeneratedColorPalette } = require("./randomPaletteGeneration");
 const { createServer } = require("http");
-/* Creating a constant variable called PORT and assigning it the value of 4000. */
-const PORT = 4000;
+require("dotenv").config();
 
 /* Creating a server that listens on port 4000 and returns a JSON object of a random color palette. */
 createServer((request, response, error) => {
@@ -14,4 +13,4 @@ createServer((request, response, error) => {
         response.write(JSON.stringify(randomGeneratedColorPalette(), null, 4));
         response.end();
     }
-}).listen(PORT);
+}).listen(process.env.PORT);

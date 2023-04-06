@@ -1,3 +1,4 @@
 .DS_Store
 exercise3/node_modules
 exercise3/package-lock.json
+exercise3/.env
