@@ -1,0 +1,6 @@
+
+exercise5/package-lock.json
+node_modules/
+.env
+exercise5/nodemon.json
+.DS_Store
