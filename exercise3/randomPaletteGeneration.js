@@ -1,6 +1,7 @@
 /* Importing the `readFileSync` and `writeFileSync` functions from the `fs` module and the `randomExt`
 module. */
-const { readFileSync, writeFileSync } = require("fs");
+const { readFileHelper } = require("./readFileHelper");
+const { writeFileHelper } = require("./writeFileHelper");
 const randomExt = require("random-ext");
 
 /**
@@ -8,18 +9,16 @@ const randomExt = require("random-ext");
  * @returns An array of 5 random colors.
  */
 const randomGeneratedColorPalette = () => {
-    const colorPalette = JSON.parse(readFileSync("color_ palette.json", "UTF-8"));
-    
-    let randomColors = [];
-    while(randomColors.length < 5) {
-        let randNum = randomExt.integer(colorPalette.length-1, 0);
-        if(randomColors.indexOf(randNum) === -1)
-            randomColors.push(colorPalette[randNum]);
+    const colorPalette =  readFileHelper("color_ palette.json");
+
+    const randomColors = new Set();
+    while(randomColors.size < 5) {
+        randomColors.add(colorPalette[randomExt.integer(colorPalette.length-1, 0)]);
     }
 
-    writeFileSync("random_generated_color_palette.json", JSON.stringify(randomColors), "UTF-8");
+    console.log(writeFileHelper("random_generated_color_palette.json", Array.from(randomColors)));
     
-    const randomGeneratedColorPalette = JSON.parse(readFileSync("random_generated_color_palette.json", "utf-8"));
+    const randomGeneratedColorPalette = readFileHelper("random_generated_color_palette.json");
 
     return randomGeneratedColorPalette;
 }
