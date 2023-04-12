@@ -1,0 +1,6 @@
+.DS_Store
+exercise7/node_modules
+exercise7/.env
+exercise7/package-lock.json
+exercise7/nodemon.json
+exercise7/keys.txt
