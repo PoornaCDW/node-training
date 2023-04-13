@@ -1,0 +1,25 @@
+error: Apr-12-2023 10:54:02: 	404 - File was not found! - existsSync is not defined
+error: Apr-12-2023 10:58:30: 	404 - File was not found! - existsSync is not defined
+error: Apr-12-2023 10:58:30: 	404 - File was not found! - ENOENT: no such file or directory, open './assets/4_tasks.json'
+error: Apr-12-2023 11:00:20: 	404 - File was not found! - existsSync is not defined
+error: Apr-12-2023 11:00:37: 	404 - File was not found! - existsSync is not defined
+error: Apr-12-2023 11:01:17: 	404 - File was not found! - existsSync is not defined
+error: Apr-12-2023 11:01:17: 	404 - File was not found! - ENOENT: no such file or directory, open './assets/4_tasks.json'
+error: Apr-12-2023 11:03:00: 	404 - File was not found! - existsSync is not defined
+error: Apr-12-2023 11:03:00: 	404 - File was not found! - ENOENT: no such file or directory, open './assets/4_tasks.json'
+error: Apr-12-2023 11:04:34: 	404 - File was not found! - existsSync is not defined
+error: Apr-12-2023 11:05:36: 	404 - File was not found! - existsSync is not defined
+error: Apr-12-2023 11:05:56: 	404 - File was not found! - ENOENT: no such file or directory, open '../assets/Dharun_tasks.json'
+error: Apr-12-2023 11:06:18: 	404 - File was not found! - ENOENT: no such file or directory, open '../assets/Dharun_tasks.json'
+error: Apr-12-2023 11:27:38: 	404 - File was not found! - ENOENT: no such file or directory, open '../assets/${authenticationResponse.data.userName}_tasks.json'
+error: Apr-12-2023 11:28:46: 	404 - File was not found! - ENOENT: no such file or directory, open '../assets/tasks.json'
+error: Apr-12-2023 11:29:24: 	404 - File was not found! - ENOENT: no such file or directory, open '../assets/tasks.json'
+error: Apr-12-2023 11:30:01: 	404 - File was not found! - ENOENT: no such file or directory, open '../assets/tasks.json'
+error: Apr-12-2023 12:25:58: 	404 - File was not found! - ENOENT: no such file or directory, open './assets/Dharun_4_tasks.json'
+error: Apr-12-2023 19:29:46: 	404 - File was not found! - Cannot read properties of undefined (reading 'userName')
+error: Apr-12-2023 19:30:22: 	404 - File was not found! - Cannot read properties of undefined (reading 'userName')
+error: Apr-12-2023 19:33:12: 	404 - File was not found! - Cannot read properties of undefined (reading 'userName')
+error: Apr-12-2023 19:36:43: 	404 - File was not found! - Cannot read properties of undefined (reading 'userName')
+error: Apr-12-2023 19:41:33: 	404 - File was not found! - Cannot read properties of undefined (reading 'userName')
+error: Apr-12-2023 19:46:57: 	404 - File was not found! - Cannot read properties of undefined (reading 'userName')
+error: Apr-12-2023 19:52:49: 	404 - File was not found! - Cannot read properties of undefined (reading 'userName')
