@@ -19,14 +19,14 @@ const signUp = (request, response) => {
                 let index = -1;
                 index = userJsonContents.findIndex(user => user.userId === request.body.userId);
                 if(index !== -1) {
-                    response.json({
-                        "status": 404,
+                    response.status(409).json({
+                        "status": 409,
                         "data": request.body,
                         "message": "User already exists!"
                     });
                 } else {
                     const responseJson = await userServices.signUpService(userJsonContents, request.body);
-                    response.send(responseJson);
+                    response.status(290).send(responseJson);
                 }
             }
         });
@@ -54,7 +54,7 @@ const login = (request, response) => {
             } else {
                 const userJsonContents = JSON.parse(data);
                 const responseJson = await userServices.loginService(userJsonContents, request.body);
-                response.send(responseJson);
+                response.status(responseJson.status).send(responseJson);
             }
         });   
     } catch (error) {

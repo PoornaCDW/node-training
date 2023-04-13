@@ -46,7 +46,7 @@ describe("Login", () => {
             "userName": "sai",
             "password": "poorna@2822"
         });
-        expect(response.body.message).toBe("Wrong Password!");
+        expect(response.body.message).toBe("Wrong Username or Password!");
     })
 });
 

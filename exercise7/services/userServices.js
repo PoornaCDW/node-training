@@ -47,17 +47,17 @@ const loginService = async (userData, body) => {
     let index = -1;
     index = userData.findIndex(user => user.userId === body.userId);
     if(index !== -1) {
-        if(await compare(body.password, userData[index].password)) {
+        if(body.userName == userData[index].userName && await compare(body.password, userData[index].password)) {
             const token = sign(userData[index], process.env.JWTSECRETKEY, { expiresIn: "24h" });
             status = 290;
             responseData = token;
             message = "The login was successful!";
         } else {
             status = 404;
-            message = "Wrong Password!";   
+            message = "Wrong Username or Password!";   
         }
     } else {
-        status = 199;
+        status = 409;
         message = "User not found!";
     }
 

@@ -42,9 +42,7 @@ const validate = (data)  =>{
  * set headers, and control the status code of the response.
  */
 const addTask = (request, response) => {
-    console.log("Authorization Token: " + request.headers.authorization);
     const authenticationResponse = auth.verifyToken(request.headers.authorization);
-    console.log(authenticationResponse);
     if(authenticationResponse.status == 290) {
         try {
             if(!existsSync(`./assets/${authenticationResponse.data.userName}_${authenticationResponse.data.userId}_tasks.json`)) {
@@ -65,18 +63,18 @@ const addTask = (request, response) => {
                             const tasks = JSON.parse(data);
                             index = tasks.findIndex(task => task.taskId === request.body.taskId);
                             if(index !== -1) {
-                                response.json({
-                                    "status": 404,
+                                response.status(409).json({
+                                    "status": 409,
                                     "data": request.body,
                                     "message": `Task with ID - ${request.body.taskId} already exists!`
                                 });
                             }  else {
                                 const addServiceResponse = taskServices.addTask(tasks, request.body, authenticationResponse.data);
-                                response.send(addServiceResponse);
+                                response.status(addServiceResponse.status).send(addServiceResponse);
                             }
                         } else {
-                            response.status(404).json({
-                                "status": 404,
+                            response.status(409).json({
+                                "status": 409,
                                 "data": request.body,
                                 "message": "Invalid data format!"
                             });
@@ -132,13 +130,13 @@ const readTask = (request, response) => {
                     const tasks = JSON.parse(data);
                     if(request.query.sort){
                         const sortResponse = taskServices.sortTask(tasks, request.query.sort);
-                        response.send(sortResponse);
+                        response.status(sortResponse.status).send(sortResponse);
                     } else if(!(Object.keys(request.query) == 0)) {
                         const filterResponse = taskServices.filterTask(tasks, request.query);
-                        response.send(filterResponse);
+                        response.status(filterResponse.status).send(filterResponse);
                     } else {
                         const readTaskReasponse = taskServices.readTask(tasks, authenticationResponse.data);
-                        response.send(readTaskReasponse);
+                        response.status(readTaskReasponse.status).send(readTaskReasponse);
                     }
                 }
             });
@@ -182,7 +180,7 @@ const readSpecificTask = (request, response) => {
                 } else {
                     const tasks = JSON.parse(data);
                     const readTaskReasponse = taskServices.readSpecificTask(tasks, request.params.taskId);
-                    response.send(readTaskReasponse);
+                    response.status(readTaskReasponse.status).send(readTaskReasponse);
                 }
             });
         } catch (error) {
@@ -226,7 +224,7 @@ const updateTask = (request, response) => {
                     if(validate(request.body)) {
                         const tasks = JSON.parse(data);
                         const updateServiceResponse = taskServices.updateTask(tasks, request.params.taskId, request.body, authenticationResponse.data);
-                        response.send(updateServiceResponse);
+                        response.status(updateServiceResponse.status).send(updateServiceResponse);
                     } else {
                         response.status(404).json({
                             "status": 404,
@@ -277,7 +275,7 @@ const deleteTask = (request, response) => {
                 } else {
                     const tasks = JSON.parse(data);
                     const deleteTaskResponse = taskServices.deleteTask(tasks, request.params.taskId, authenticationResponse.data);
-                    response.send(deleteTaskResponse);
+                    response.status(deleteTaskResponse.status).send(deleteTaskResponse);
                 }
             });
         } catch (error) {
